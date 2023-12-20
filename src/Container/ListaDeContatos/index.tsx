@@ -1,76 +1,29 @@
-import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import * as S from './styles'
-import { remover, editar } from '../../Store/Reducers/contatos'
-import TarefaClass from '../../models/Tarefa'
-import { Botao, BotaoSalvar } from '../../styles'
-type Props = TarefaClass
+import { RootReducer } from '../../Store'
+import Contatos from '../Contato'
+import { MainContainer } from '../../styles'
 
-const ListaDeContatos = ({
-    nome: nomeOriginal,
-    telefone,
-    email,
-    id
-}: Props) => {
-    const dispatch = useDispatch()
-    const [estaEditando, setEstaEditando] = useState(false)
-    const [nome, setNome] = useState('')
 
-    useEffect(() => {
-        if (nomeOriginal.length > 0) {
-            setNome(nomeOriginal)
-        }
-    }, [nomeOriginal])
-
-    function cancelarEdicao() {
-        setEstaEditando(false)
-        setNome(nomeOriginal)
-    }
+const ListaDeContatos = () => {
+    const { contatos } = useSelector((state: RootReducer) => state)
 
     return (
-        <S.Card>
-        <S.Titulo>Maria</S.Titulo>
-        <S.Titulo>01 123456789</S.Titulo>
-        <S.Titulo>Maria@teste.com</S.Titulo>
-        <S.BotaoCard>
-        <S.BotaoEditar>Editar</S.BotaoEditar>
-        <S.BotaoCancelarRemover>Remover</S.BotaoCancelarRemover>
-        </S.BotaoCard>
-
-        <S.BarraAcoes>
-            {estaEditando ? (
-                <>
-                    <BotaoSalvar
-                        onClick={() => {
-                        dispatch(
-                            editar({
-                                nome,
-                                telefone,
-                                email,
-                                id
-                        })
-                    )
-                    setEstaEditando(false)
-                    }}
-                    >
-                    Salvar
-                    </BotaoSalvar>
-                    <S.BotaoCancelarRemover onClick={cancelarEdicao}>
-                        Cancelar
-                    </S.BotaoCancelarRemover>
-                </>
-            ) : (
-                <>
-                <Botao onClick={() => setEstaEditando(true)}>Editar</Botao>
-                    <S.BotaoCancelarRemover onClick={() => dispatch(remover(id))}>
-                        Remover
-                    </S.BotaoCancelarRemover>
-                </>
-            )}
-            </S.BarraAcoes>
-        </S.Card>
+        <MainContainer>
+            <ul>
+                {contatos.map((c) => (
+                    <li key={c.titulo}>
+                        <Contatos
+                        id={c.id}
+                        telefone={c.telefone}
+                        nome={c.nome}
+                        email={c.email}
+                        />
+                    </li>
+                ))}
+            </ul>
+    </MainContainer>
     )
-            }
+}
 
 export default ListaDeContatos

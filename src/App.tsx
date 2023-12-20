@@ -10,7 +10,7 @@ function App() {
       <EstiloGlobal />
       <div className="container">
         <Cadastrar />
-        <ListaDeContatos nome={""} telefone={""} email={""} id={0} />
+        <ListaDeContatos />
       </div>
     </Provider>
   )

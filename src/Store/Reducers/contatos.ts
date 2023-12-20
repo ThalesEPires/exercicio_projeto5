@@ -13,6 +13,18 @@ const initialState: ContatosState = {
             nome: 'Thales Pires',
             email: 'teste@teste.com',
             telefone: '01 12345678'
+        },
+        {
+            id: 2,
+            nome: 'Maria',
+            email: 'teste2@teste2.com',
+            telefone: '01 987654321'
+        },
+        {
+            id: 3,
+            nome: 'João',
+            email: 'teste3@teste3.com',
+            telefone: '01 01010101'
         }
     ],
     length: undefined
