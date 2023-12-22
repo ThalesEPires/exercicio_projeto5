@@ -11,8 +11,8 @@ const ListaDeContatos = () => {
     return (
         <MainContainer>
             <ul>
-                {contatos.map((c) => (
-                    <li key={c.titulo}>
+                {contatos.itens.map((c) => (
+                    <li key={c.id}>
                         <Contatos
                         id={c.id}
                         telefone={c.telefone}

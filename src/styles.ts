@@ -44,8 +44,4 @@ export const Botao = styled.button`
     margin-right: 8px;
 `
 
-export const BotaoSalvar = styled(Botao)`
-    background-color: #2ecc71;
-`
-
 export default EstiloGlobal
